@@ -1,165 +1,78 @@
 /* assets/css/filter-styles.css */
 
-/* --- Styles for Top Bar & Modern Filter Bar (অপরিবর্তিত) --- */
-.top-bar-wrapper {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-bottom: 25px;
-    padding-bottom: 10px;
-}
-.total-events-counter {
-    font-size: 16px;
-    color: #333;
-}
-.total-events-counter strong {
-    font-weight: 500;
-}
-.total-events-counter span {
-    font-weight: bold;
-    color: #4a45d2;
-    font-size: 1.1em;
-    padding-left: 5px;
-}
-.modern-filter-bar { 
-    display: flex; 
-    align-items: stretch; 
-    background-color: #ffffff; 
-    border-radius: 12px; 
-    padding: 10px 10px 10px 20px; 
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); 
-    border: 1px solid #eef0f3; 
-}
-.modern-filter-bar .filter-item { 
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
-    flex: 1; 
-    padding: 0 15px; 
-    border-left: 1px solid #eef0f3; 
-}
-.modern-filter-bar .filter-item:first-child {
-    border-left: none; 
-    padding-left: 0; 
-}
-.modern-filter-bar .submit-item {
-    border-left: none;
-    padding-left: 15px;
-    padding-right: 0;
-    flex: 0 0 auto;
-}
-.modern-filter-bar .filter-icon { 
-    color: #888; 
-    flex-shrink: 0; 
-}
-.modern-filter-bar input, .modern-filter-bar select { 
-    width: 100%; border: none; background-color: transparent; font-size: 16px; 
-    color: #555; outline: none; -webkit-appearance: none; -moz-appearance: none; appearance: none; 
-}
-.modern-filter-bar select { cursor: pointer; }
-.modern-filter-bar .search-submit-button { 
-    display: flex; align-items: center; justify-content: center; 
-    width: 44px; height: 44px; background-color: #4a45d2; 
-    border: none; border-radius: 50%; cursor: pointer; transition: background-color 0.2s ease; 
-}
-.modern-filter-bar .search-submit-button:hover { background-color: #3b37a8; }
-.filter-item .select-wrapper { position: relative; width: 100%; flex: 1; }
-.filter-item .select-wrapper::after { content: ''; position: absolute; top: 50%; right: 5px; margin-top: -4px; pointer-events: none; border: solid #888; border-width: 0 2px 2px 0; display: inline-block; padding: 3px; transform: rotate(45deg); }
-.modern-filter-bar select { padding-right: 25px !important; }
+/* --- Top Bar & Filter Bar Styles (অপরিবর্তিত) --- */
+.top-bar-wrapper{display:flex;justify-content:flex-end;align-items:center;margin-bottom:25px;padding-bottom:10px}.total-events-counter{font-size:16px;color:#333}.total-events-counter strong{font-weight:500}.total-events-counter span{font-weight:700;color:#4a45d2;font-size:1.1em;padding-left:5px}.modern-filter-bar{display:flex;align-items:stretch;background-color:#fff;border-radius:12px;padding:10px 10px 10px 20px;box-shadow:0 8px 25px rgba(0,0,0,.08);border:1px solid #eef0f3}.modern-filter-bar .filter-item{display:flex;align-items:center;gap:10px;flex:1;padding:0 15px;border-left:1px solid #eef0f3}.modern-filter-bar .filter-item:first-child{border-left:none;padding-left:0}.modern-filter-bar .submit-item{border-left:none;padding-left:15px;padding-right:0;flex:0 0 auto}.modern-filter-bar .filter-icon{color:#888;flex-shrink:0}.modern-filter-bar input,.modern-filter-bar select{width:100%;border:none;background-color:transparent;font-size:16px;color:#555;outline:none;-webkit-appearance:none;-moz-appearance:none;appearance:none}.modern-filter-bar select{cursor:pointer}.modern-filter-bar .search-submit-button{display:flex;align-items:center;justify-content:center;width:44px;height:44px;background-color:#4a45d2;border:none;border-radius:50%;cursor:pointer;transition:background-color .2s ease}.modern-filter-bar .search-submit-button:hover{background-color:#3b37a8}.filter-item .select-wrapper{position:relative;width:100%;flex:1}.filter-item .select-wrapper::after{content:'';position:absolute;top:50%;right:5px;margin-top:-4px;pointer-events:none;border:solid #888;border-width:0 2px 2px 0;display:inline-block;padding:3px;transform:rotate(45deg)}.modern-filter-bar select{padding-right:25px!important}
 
-/* --- General Styles --- */
+/* General Styles */
 .loader { text-align: center; padding: 20px; font-size: 18px; }
 .af-event-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 20px; }
 
 
-/* ============== পরিবর্তন শুরু: পুরোনো .event-card স্টাইল মুছে নতুন ডিজাইন যোগ করা হয়েছে ============== */
+/* ============== পরিবর্তন শুরু: ইভেন্ট কার্ডের চূড়ান্ত ডিজাইন ============== */
 
 .etn-event-item {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0px 5px 25px 0px rgba(138, 138, 138, 0.15);
-    transition: all 0.3s ease-in-out;
+    background: #ffffff;
+    border-radius: 12px; /* ডেমোর মতো করে গোলাকার কোণা */
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.07);
+    transition: all .3s ease-in-out;
     display: flex;
     flex-direction: column;
 }
-
 .etn-event-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0px 10px 30px 0px rgba(138, 138, 138, 0.25);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
-
 .etn-event-thumb {
     position: relative;
+    border-radius: 12px 12px 0 0;
     overflow: hidden;
-    border-radius: 10px 10px 0 0;
 }
-
 .etn-event-thumb a {
     display: block;
 }
-
 .etn-event-thumb img {
     width: 100%;
-    height: 250px;
+    height: 220px; /* ডেমোর মতো করে উচ্চতা ঠিক করা হয়েছে */
     object-fit: cover;
-    transition: transform 0.4s ease;
 }
-
-.etn-event-item:hover .etn-event-thumb img {
-    transform: scale(1.05);
-}
-
 .etn-event-content {
-    padding: 25px 30px;
+    padding: 25px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
-
 .etn-event-title {
     margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 22px;
-    line-height: 1.3;
-    font-weight: 600;
+    margin-bottom: 12px;
+    font-family: "Gothic A1", sans-serif; /* ডেমোতে ব্যবহৃত ফন্ট */
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.4;
 }
-
 .etn-event-title a {
-    color: #1a1a1a;
+    color: #283746;
     text-decoration: none;
-    transition: color 0.3s ease;
 }
-
-.etn-event-title a:hover {
-    color: #4a45d2;
-}
-
 .etn-event-meta {
     margin-bottom: 20px;
     color: #555;
-    font-size: 15px;
+    font-size: 14px;
+    line-height: 1.5;
 }
-
 .etn-meta-info {
     display: flex;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
 }
-
 .etn-meta-info:last-child {
     margin-bottom: 0;
 }
-
 .etn-meta-info i {
-    color: #4a45d2;
     margin-right: 10px;
-    font-size: 14px;
-    width: 15px;
-    text-align: center;
+    color: #888;
 }
-
 .etn-event-footer {
-    margin-top: auto; /* Pushes footer to the bottom */
+    margin-top: auto; /* ফুটারকে কার্ডের নিচে রাখার জন্য */
     padding-top: 20px;
     border-top: 1px solid #f0f0f0;
     display: flex;
@@ -167,51 +80,55 @@
     align-items: center;
     gap: 15px;
 }
-
-.etn-event-des {
-    color: #555;
-    font-size: 15px;
-    line-height: 1.6;
-    flex: 1;
+.etn-organizer {
+    display: flex;
+    flex-direction: column; /* লেখা দুটিকে উপরে-নিচে দেখানোর জন্য */
 }
-
-.etn-buy-btn {
-    flex-shrink: 0;
+.etn-organizer .organizer-label {
+    display: block;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 2px;
 }
-
-.etn-btn {
+.etn-organizer .organizer-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ff007a; /* ডেমোর মতো করে গোলাপি রঙ */
+}
+.etn-buy-btn .etn-btn {
     display: inline-block;
-    padding: 10px 25px;
-    background-color: #4a45d2;
-    color: #ffffff;
+    padding: 8px 24px;
+    border: 2px solid #e0e0e0; /* আউটলাইন বাটন */
     border-radius: 5px;
+    color: #333;
+    background-color: transparent;
     text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
-    text-align: center;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: all .3s ease;
 }
-
-.etn-btn:hover {
-    background-color: #3b37a8;
-    color: #ffffff;
+.etn-buy-btn .etn-btn:hover {
+    background-color: #4a45d2;
+    border-color: #4a45d2;
+    color: #fff;
 }
-
-.etn-btn.disabled {
-    background-color: #e0e0e0;
-    color: #9e9e9e;
+.etn-buy-btn .etn-btn.disabled {
+    background-color: #f5f5f5;
+    border-color: #f5f5f5;
+    color: #aaa;
     cursor: not-allowed;
-    pointer-events: none;
 }
-/* ============== পরিবর্তন শেষ ============== */
+
+/* ============== নতুন ডিজাইন শেষ ============== */
 
 
-/* --- Pagination Styles (অপরিবর্তিত) --- */
+/* --- Pagination & Responsive Styles --- */
 .pagination-wrapper { margin-top: 40px; text-align: center; }
-.pagination-wrapper .page-numbers { display: inline-block; padding: 8px 16px; margin: 0 4px; border: 1px solid #ddd; background-color: #fff; color: #4a45d2; text-decoration: none; border-radius: 8px; font-weight: 500; transition: background-color 0.2s, color 0.2s; }
+.pagination-wrapper .page-numbers { display: inline-block; padding: 8px 16px; margin: 0 4px; border: 1px solid #ddd; background-color: #fff; color: #4a45d2; text-decoration: none; border-radius: 8px; font-weight: 500; transition: background-color .2s, color .2s; }
 .pagination-wrapper .page-numbers:hover { background-color: #4a45d2; border-color: #4a45d2; color: #fff; }
 .pagination-wrapper .page-numbers.current { background-color: #4a45d2; color: #fff; border-color: #4a45d2; }
 
-/* Responsive Styles */
 @media (max-width: 991px) {
     .af-event-grid { grid-template-columns: repeat(2, 1fr); }
     .modern-filter-bar { flex-direction: column; align-items: stretch; border-radius: 12px; padding: 15px; }
@@ -224,7 +141,3 @@
 @media (max-width: 767px) {
     .af-event-grid { grid-template-columns: 1fr; }
 }
-
-/* --- Fix for Date Input --- */
-.modern-filter-bar .filter-item .date-input { position: relative; z-index: 2; }
-.modern-filter-bar input[type="month"]::-webkit-calendar-picker-indicator { position: absolute; right: 0; top: 0; width: 100%; height: 100%; background: transparent; color: transparent; cursor: pointer; }

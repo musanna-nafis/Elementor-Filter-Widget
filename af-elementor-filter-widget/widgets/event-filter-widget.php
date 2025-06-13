@@ -221,6 +221,7 @@ class AF_Event_Filter_Widget extends Widget_Base {
         $this->end_controls_section();
 
 
+        // ==============Event Card Style Section ==============
         $this->start_controls_section(
             'style_section_event_card',
             [
@@ -278,24 +279,21 @@ class AF_Event_Filter_Widget extends Widget_Base {
             ]
         );
         
-        $this->add_control('card_excerpt_heading', [
-            'label' => __('Description', 'af-elementor-widget'),
+        $this->add_control('card_organizer_heading', [
+            'label' => __('Organizer Text', 'af-elementor-widget'),
             'type' => Controls_Manager::HEADING,
             'separator' => 'before',
         ]);
-        $this->add_control('card_excerpt_color', [
-            'label' => 'Description Color',
+        $this->add_control('organizer_label_color', [
+            'label' => 'Label Color ("Organized By")',
             'type' => Controls_Manager::COLOR,
-            'selectors' => ['{{WRAPPER}} .etn-event-des' => 'color: {{VALUE}};']
+            'selectors' => ['{{WRAPPER}} .etn-organizer .organizer-label' => 'color: {{VALUE}};']
         ]);
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name' => 'card_excerpt_typography',
-                'label' => 'Description Typography',
-                'selector' => '{{WRAPPER}} .etn-event-des'
-            ]
-        );
+        $this->add_control('organizer_name_color', [
+            'label' => 'Vendor Name Color',
+            'type' => Controls_Manager::COLOR,
+            'selectors' => ['{{WRAPPER}} .etn-organizer .organizer-name' => 'color: {{VALUE}};']
+        ]);
 
         $this->add_control('card_button_heading', [
             'label' => __('Buy Button', 'af-elementor-widget'),
@@ -312,32 +310,24 @@ class AF_Event_Filter_Widget extends Widget_Base {
         );
         $this->start_controls_tabs('card_button_style_tabs');
         $this->start_controls_tab('card_button_normal', ['label' => __('Normal', 'af-elementor-widget')]);
-        $this->add_control('card_button_text_color', [
-            'label' => 'Text Color',
-            'type' => Controls_Manager::COLOR,
-            'selectors' => ['{{WRAPPER}} .etn-btn' => 'color: {{VALUE}};']
-        ]);
-        $this->add_control('card_button_bg_color', [
-            'label' => 'Background Color',
-            'type' => Controls_Manager::COLOR,
-            'selectors' => ['{{WRAPPER}} .etn-btn' => 'background-color: {{VALUE}};']
-        ]);
+        $this->add_control('card_button_text_color', ['label' => 'Text Color', 'type' => Controls_Manager::COLOR, 'selectors' => ['{{WRAPPER}} .etn-buy-btn .etn-btn' => 'color: {{VALUE}};']]);
+        $this->add_control('card_button_border_color', ['label' => 'Border Color', 'type' => Controls_Manager::COLOR, 'selectors' => ['{{WRAPPER}} .etn-buy-btn .etn-btn' => 'border-color: {{VALUE}};']]);
+        $this->add_control('card_button_bg_color', ['label' => 'Background Color', 'type' => Controls_Manager::COLOR, 'selectors' => ['{{WRAPPER}} .etn-buy-btn .etn-btn' => 'background-color: {{VALUE}};']]);
         $this->end_controls_tab();
         $this->start_controls_tab('card_button_hover', ['label' => __('Hover', 'af-elementor-widget')]);
-        $this->add_control('card_button_hover_text_color', [
-            'label' => 'Text Color',
-            'type' => Controls_Manager::COLOR,
-            'selectors' => ['{{WRAPPER}} .etn-btn:hover' => 'color: {{VALUE}};']
-        ]);
-        $this->add_control('card_button_hover_bg_color', [
-            'label' => 'Background Color',
-            'type' => Controls_Manager::COLOR,
-            'selectors' => ['{{WRAPPER}} .etn-btn:hover' => 'background-color: {{VALUE}};']
-        ]);
+        $this->add_control('card_button_hover_text_color', ['label' => 'Text Color', 'type' => Controls_Manager::COLOR, 'selectors' => ['{{WRAPPER}} .etn-buy-btn .etn-btn:hover' => 'color: {{VALUE}};']]);
+        $this->add_control('card_button_hover_border_color', ['label' => 'Border Color', 'type' => Controls_Manager::COLOR, 'selectors' => ['{{WRAPPER}} .etn-buy-btn .etn-btn:hover' => 'border-color: {{VALUE}};']]);
+        $this->add_control('card_button_hover_bg_color', ['label' => 'Background Color', 'type' => Controls_Manager::COLOR, 'selectors' => ['{{WRAPPER}} .etn-buy-btn .etn-btn:hover' => 'background-color: {{VALUE}};']]);
         $this->end_controls_tab();
         $this->end_controls_tabs();
 
         $this->end_controls_section();
+
+
+
+
+
+
 
         // Section: Pagination
         $this->start_controls_section(

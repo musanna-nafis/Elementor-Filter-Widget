@@ -64,60 +64,65 @@ function af_complex_filter_ajax_handler() {
     if ($query->have_posts()) {
         echo '<div class="af-event-grid">';
         
-    
         while ($query->have_posts()) {
             $query->the_post();
             
-       
+            // --- লজিক অপরিবর্তিত ---
             $event_id = get_the_ID();
             $location = get_post_meta($event_id, 'event_location', true);
             $start_date = get_post_meta($event_id, 'event_start_date', true);
-            $event_time = get_post_meta($event_id, 'event_time', true);
-            $poster_data = get_post_meta($event_id, '_pods_event_poster', true);
+            $end_date = get_post_meta($event_id, 'event_end_date', true); // ডেমোর মতো করে শেষ হওয়ার তারিখ আনা হয়েছে
             $ticket_id = get_post_meta($event_id, 'ticket_id', true);
 
+            $poster_data = get_post_meta($event_id, '_pods_event_poster', true); 
             $image_url = ''; 
-            if (is_array($poster_data) && !empty($poster_data) && isset($poster_data[0][0]) && is_numeric($poster_data[0][0])) {
-                $poster_id = $poster_data[0][0];
+            if (is_array($poster_data) && !empty($poster_data) && isset($poster_data[0]['ID']) && is_numeric($poster_data[0]['ID'])) {
+                $poster_id = $poster_data[0]['ID'];
                 $image_url = wp_get_attachment_image_url($poster_id, 'large');
             }
             if (empty($image_url)) {
                  $image_url = 'https://via.placeholder.com/450x300.png?text=Event+Poster';
             }
-           
-            $formatted_date = $start_date ? date("F j, Y", strtotime($start_date)) : '';
-            $formatted_time = $event_time ? ' at ' . esc_html($event_time) : '';
+            
+            // তারিখ ফরম্যাট করা
+            $formatted_date = '';
+            if ($start_date) {
+                $formatted_date = date("D, d M Y", strtotime($start_date));
+            }
+            if ($end_date) {
+                // ডেমোর মতো করে তারিখের ফরম্যাট
+                $formatted_date .= ' - ' . date("D, d M Y", strtotime($end_date));
+            }
             ?>
+
             <div class="etn-event-item">
                 <div class="etn-event-thumb">
                     <a href="<?php the_permalink(); ?>">
-                        <img src="<?php echo $image_url; ?>" alt="<?php the_title_attribute(); ?>">
+                        <img src="<?php echo esc_url($image_url); ?>" alt="<?php the_title_attribute(); ?>">
                     </a>
                 </div>
                 <div class="etn-event-content">
                     <h3 class="etn-event-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
                     <div class="etn-event-meta">
                         <div class="etn-meta-info">
-                            <i class="fas fa-calendar-alt"></i> <?php echo esc_html($formatted_date . $formatted_time); ?>
+                            <i class="fas fa-calendar-alt"></i> <?php echo esc_html($formatted_date); ?>
                         </div>
-                        <?php if ($location): ?>
+                         <?php if ($location): ?>
                         <div class="etn-meta-info">
                             <i class="fas fa-map-marker-alt"></i> <?php echo esc_html($location); ?>
                         </div>
                         <?php endif; ?>
-                        <div class="etn-meta-info">
-                             <i class="fas fa-user"></i> Organized by Please set vendor
-                        </div>
                     </div>
                      <div class="etn-event-footer">
-                        <div class="etn-event-des">
-                           <?php echo wp_trim_words( get_the_excerpt(), 15, '...' ); ?>
+                        <div class="etn-organizer">
+                            <span class="organizer-label">Organized By</span>
+                            <span class="organizer-name">Please Set Vendor</span>
                         </div>
                         <div class="etn-buy-btn">
                             <?php if (!empty($ticket_id)) : ?>
-                                <a href="/?add-to-cart=<?php echo esc_attr($ticket_id); ?>" class="etn-btn">Buy Now</a>
+                                <a href="/?add-to-cart=<?php echo esc_attr($ticket_id); ?>" class="etn-btn">BUY NOW</a>
                             <?php else: ?>
-                                <a href="#" class="etn-btn disabled" onclick="return false;">Not Available</a>
+                                <a href="#" class="etn-btn disabled" onclick="return false;">NOT AVAILABLE</a>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -125,7 +130,7 @@ function af_complex_filter_ajax_handler() {
             </div>
             <?php
         }
-     
+        
 
         echo '</div>';
     } else {
