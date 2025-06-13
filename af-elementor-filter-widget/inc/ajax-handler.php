@@ -64,22 +64,36 @@ function af_complex_filter_ajax_handler() {
     if ($query->have_posts()) {
         echo '<div class="af-event-grid">';
         
+        /*111 */
         while ($query->have_posts()) {
             $query->the_post();
             
-            // --- লজিক অপরিবর্তিত ---
+        
             $event_id = get_the_ID();
             $location = get_post_meta($event_id, 'event_location', true);
             $start_date = get_post_meta($event_id, 'event_start_date', true);
             $end_date = get_post_meta($event_id, 'event_end_date', true); // ডেমোর মতো করে শেষ হওয়ার তারিখ আনা হয়েছে
             $ticket_id = get_post_meta($event_id, 'ticket_id', true);
 
-            $poster_data = get_post_meta($event_id, '_pods_event_poster', true); 
-            $image_url = ''; 
-            if (is_array($poster_data) && !empty($poster_data) && isset($poster_data[0]['ID']) && is_numeric($poster_data[0]['ID'])) {
-                $poster_id = $poster_data[0]['ID'];
-                $image_url = wp_get_attachment_image_url($poster_id, 'large');
+            /*Event Poster render */
+            $image_url = '';
+
+            // প্রথমে চেক করা হচ্ছে Pods ফ্রেমওয়ার্ক চালু আছে কিনা
+            if (function_exists('pods')) {
+                // 'event' পডের অবজেক্ট তৈরি করা হচ্ছে
+                $pod = pods('event', $event_id);
+                if ($pod->exists()) {
+                    // সঠিক ফিল্ডের নাম 'event_poster' থেকে ছবির সব তথ্য আনা হচ্ছে
+                    $poster_field_data = $pod->field('event_poster');
+                    
+                    // যদি ফিল্ডে ডেটা থাকে এবং ছবির লিঙ্ক (guid) পাওয়া যায়
+                    if (!empty($poster_field_data) && isset($poster_field_data['guid'])) {
+                        $image_url = $poster_field_data['guid'];
+                    }
+                }
             }
+            
+            // যদি কোনো কারণে ছবি না পাওয়া যায়, তাহলে একটি ফলব্যাক ইমেজ দেখানো হবে
             if (empty($image_url)) {
                  $image_url = 'https://via.placeholder.com/450x300.png?text=Event+Poster';
             }
@@ -122,7 +136,7 @@ function af_complex_filter_ajax_handler() {
                             <?php if (!empty($ticket_id)) : ?>
                                 <a href="/?add-to-cart=<?php echo esc_attr($ticket_id); ?>" class="etn-btn">BUY NOW</a>
                             <?php else: ?>
-                                <a href="#" class="etn-btn disabled" onclick="return false;">NOT AVAILABLE</a>
+                                <a href="#" class="etn-btn disabled" onclick="return false;">BUY NOW</a>
                             <?php endif; ?>
                         </div>
                     </div>

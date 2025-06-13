@@ -404,7 +404,7 @@ class AF_Event_Filter_Widget extends Widget_Base {
                         <div class="select-wrapper">
                             <select name="event_location">
                                 <option value="">Event Location</option>
-                                <?php global $wpdb; $locations = $wpdb->get_col("SELECT DISTINCT meta_value FROM {$wpdb->postmeta} WHERE meta_key = 'event_location' ORDER BY meta_value ASC"); if ($locations) foreach ($locations as $location) echo '<option value="' . esc_attr($location) . '">' . esc_html($location) . '</option>'; ?>
+                                <?php global $wpdb; $locations = $wpdb->get_col("SELECT DISTINCT meta_value FROM {$wpdb->postmeta} WHERE meta_key = 'event_location' AND meta_value != '' ORDER BY meta_value ASC"); if ($locations) foreach ($locations as $location) echo '<option value="' . esc_attr($location) . '">' . esc_html($location) . '</option>'; ?>
                             </select>
                         </div>
                     </div>
@@ -415,7 +415,7 @@ class AF_Event_Filter_Widget extends Widget_Base {
                         </span>
                         <div class="select-wrapper">
                             <select name="event_tag">
-                                <option value="">Event Tag</option>
+                                <option value="">Event Category</option>
                                 <?php global $wpdb; $tags = $wpdb->get_col("SELECT DISTINCT meta_value FROM {$wpdb->postmeta} WHERE meta_key = 'event_tag' AND meta_value != '' ORDER BY meta_value ASC"); if ($tags) foreach ($tags as $tag) echo '<option value="' . esc_attr($tag) . '">' . esc_html($tag) . '</option>'; ?>
                             </select>
                         </div>
