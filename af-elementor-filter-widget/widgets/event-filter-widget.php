@@ -58,12 +58,14 @@ class AF_Event_Filter_Widget extends Widget_Base {
             [
                 'label' => __('Default Event Status', 'af-elementor-widget'),
                 'type' => Controls_Manager::SELECT,
-                'default' => 'past',
+                'default' => 'all',
                 'options' => [
+                    'all'       => __('All Events', 'af-elementor-widget'),
                     'past'      => __('Past Events', 'af-elementor-widget'),
                     'upcoming'  => __('Upcoming Events', 'af-elementor-widget'),
                     'ongoing'   => __('Ongoing Events', 'af-elementor-widget'),
                 ],
+                'description' => 'Select the default event type to show on page load.',
             ]
         );
         $this->end_controls_section();

@@ -26,7 +26,7 @@ function af_complex_filter_ajax_handler() {
     $posts_per_page = isset($_POST['posts_per_page']) ? absint($_POST['posts_per_page']) : 9;
     $today = date('Y-m-d');
     
-    $args = ['post_type' => 'event', 'posts_per_page' => $posts_per_page, 'post_status' => 'publish', 'paged' => $paged];
+    $args = ['post_type' => 'event', 'posts_per_page' => $posts_per_page, 'post_status' => 'publish', 'paged' => $paged, 'ignore_sticky_posts' => true];
     $meta_query = ['relation' => 'AND'];
 
     if (isset($_POST['event_status']) && !empty($_POST['event_status'])) {
