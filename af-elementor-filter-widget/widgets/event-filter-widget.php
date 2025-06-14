@@ -40,6 +40,36 @@ class AF_Event_Filter_Widget extends Widget_Base {
             ]
         );
 
+        
+        $this->add_responsive_control(
+            'columns',
+            [
+                'label' => __( 'Columns', 'af-elementor-widget' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 6,
+                    ],
+                ],
+                'devices' => [ 'desktop', 'tablet', 'mobile' ],
+                'desktop_default' => [
+                    'size' => 3,
+                ],
+                'tablet_default' => [
+                    'size' => 2,
+                ],
+                'mobile_default' => [
+                    'size' => 1,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .af-event-grid' => 'grid-template-columns: repeat({{SIZE}}, 1fr);',
+                ],
+                'description' => 'Set how many events to show per row.',
+            ]
+        );
+    
+
         $this->add_control(
             'posts_per_page',
             [

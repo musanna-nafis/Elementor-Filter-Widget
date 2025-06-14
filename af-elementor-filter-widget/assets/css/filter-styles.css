@@ -17,7 +17,6 @@
 /* Main Event Container CSS class*/
 .af-event-grid { 
     display: grid; 
-    grid-template-columns: repeat(3, 1fr); /* This will be overridden by Elementor control */
     gap: 30px; 
     margin-top: 45px; 
     padding-left: 65px;
